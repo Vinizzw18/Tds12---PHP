@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1"> <!--responsividade da tela (se ajusta independente da tela do cliente (tablet, celular, tv etc))-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <title>Aula de WEB</title>
+        <title>Palavra Secreta</title>
     </head>
     <body>
-            <center><h2>1° FORMULÁRIO</h2></center>
-            <hr/>
-            <div class="row justify-content-center row-cols-1 row-cols-md-2 mb-3 text-center">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sw"> 
-                        <div class="card-header py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-info-lg" viewBox="0 0 16 16">
-                            <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0"/>
-                            </svg>&nbsp;&nbsp;
-                            <font style="font-size: 30px;"> <b>FORMULÁRIO</b></font>
-                        </div>
-                        <div class="card-body">
-                            <Form action="resultado.php" method="post">
-                              <label class="form-label">
-                                    Digite um valor:
-                              </label>  
-                              <input class="form-control" type="number" name="num1" required placeholder="Insira um valor aqui...">
-                              <br>
-                              <label class="form-label">
-                                    Digite outro valor:
-                              </label>  
-                              <input class="form-control" type="number" name="num2" required placeholder="Insira um valor aqui...">
-                              <br>
-                              <input type="submit" class="btn btn-success" value="Enviar">
-                            </Form>
-                        </div>
+        <center><h2>GAME WORLD</h2></center>
+        <hr/>
+        <div class="row justify-content-center row-cols-1 row-cols-md-2 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sw">
+                    <div class="card-header py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-ui-checks" viewBox="0 0 16 16">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                        </svg>&nbsp;&nbsp;<font style="font-size: 30px;"><b>PALAVRA SECRETA</b></font>
+                    </div>
+                    <div class="card-body">
+                        <form action="resultado.php" method="post">
+                            <label class="form-label">Digite uma palavra</label>
+                            <input class="form-control" type="text" name="palavra" required placeholder="Digite uma palavra..."/>
+                            <br/>
+                            <input type="submit" class="btn btn-outline-success" value="INICIAR O JOGO"/>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     </body>
 </html>
