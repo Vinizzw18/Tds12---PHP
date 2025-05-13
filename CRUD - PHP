@@ -1,0 +1,172 @@
+INDEX.PHP ---------------------------------------------------------------------------------------------------------------------------
+
+<?php
+    echo "<h3>FORMA NORMAL DO ARRAY</h3>";
+
+    $frutas = array("Maçã", "Pera", "Melancia");
+
+    print_r($frutas);
+    echo "<h3>FORMA ABREVIADA DO ARRAY</h3>";
+
+    $carros = ["Opala", "Dodge", "Ferrari"];
+    print_r($carros);
+
+    echo "<h3>ARRAY ASSOCIATIVO</h3>";
+
+    $pessoa = ["nome"=> "Bela", "idade" => "30"];
+    print_r($pessoa);
+
+    echo "<h3>ACESSANDO ELEMENTOS DOS ARRAYS </h3>";
+
+    echo $frutas[1]."<br/>";
+    echo $carros[2]."<br/>";
+    echo $pessoa["nome"]."<br/>";
+
+    echo "<h3>MODIFICAR ELEMENTOS DOS ARRAYS </h3>";
+
+    echo "<br/>";
+    $carros[1] = "Camaro";
+    print_r($carros);
+    echo "<br/>";
+    $pessoa["idade"] = "25";
+    print_r($pessoa);
+
+    echo "<h3>ADICIONAR ELEMENTOS DOS ARRAYS </h3>";
+
+    echo "<br/>";
+    $carros[]= "Marajó";
+    print_r($carros);
+    echo "<br/>";
+    $pessoa["profissão"] = "Developer";
+    print_r($pessoa);
+
+    echo "<h3>REMOVER ELEMENTOS DOS ARRAYS </h3>";
+
+    echo "<br/>";
+    unset($carros[0]);
+    echo "<br/>";
+    print_r($carros);
+    echo "<br/>";
+    unset($pessoa["idade"]);
+    print_r($pessoa);
+
+    echo "<h3>INTERAÇÃO DOS ARRAYS </h3>";
+
+    echo "usando o FOR<br/>";
+    for ($i=1; $i <= count($carros); $i++) { 
+        echo "Carros na posição $i: ". $carros[$i]."<br/>";
+    }
+
+    echo "<br/>usando o FOREACH<br/>";
+    foreach ($pessoa as $chave => $valor) {
+        echo "$chave: $valor<br/>";
+    }
+?>
+
+
+PESSOA.PHP ---------------------------------------------------------------------------------------------------------------------------
+
+<?php
+    session_start();
+    //inicializa o array
+    if (!isset($_SESSION['pessoas'])){
+        $_SESSION['pessoas'] = [];
+    }
+    //Adicionar
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $nome = $_POST ['nome'];
+        $idade = $_POST ['idade'];
+        $id = $_POST ['id'];
+        $pessoa = ['nome' => $nome, 'idade' => $idade];
+        if ($id === ''){
+            $_SESSION['pessoas'][] = $pessoa;//Criando o registro
+        }else{
+            $_SESSION['pessoas'][$id] = $pessoa;//Atualizando
+        }
+        header("Location:pessoa.php");
+        exit();
+    }
+    //Deletar
+    if (isset($_GET['delete'])){
+        $id = $_GET['delete'];
+        unset($_SESSION['pessoas'][$id]);
+        header("Location:pessoa.php");
+        exit();
+    }
+    //Editar
+    $editando = false;
+    $editId = '';
+    $editNome = '';
+    $editIdade = '';
+    if (isset($_GET['edit'])){
+        $editando = true;
+        $editId = $_GET['edit'];
+        $editNome = $_SESSION['pessoas'][$editId]['nome'];
+        $editIdade = $_SESSION['pessoas'][$editId]['idade'];
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <title> CRUD - PHP</title>
+            <style>
+                body{
+                    background-color: #000000
+                }
+
+            </style>
+        </head>
+        <body>
+        <center><h2><font color="white">CRUD</font></h2></center>
+            <hr/>
+            <div class="row justify-content-center row-cols-1 row-cols-md-2 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sw">
+                        <div class="card-header py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="blue" class="bi bi-card-list" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                        </svg>&nbsp;&nbsp;<font  color="black" style="font-size: 45px;"><b>TABELA PHP</b></font>
+                            </div>
+                            <BR></BR>
+                <b><h2><font  color="black"><?=$editando ? "EDITAR PESSOA" : "CADASTRAR PESSOA"?></font></h2></b>
+                <br/>
+                <form method="post" action="pessoa.php">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($editId) ?>">
+                    <label><h6>NOME:</h6></label>
+                    <input type="text" name="nome" required value="<?=htmlspecialchars($editNome)?>"><br/>
+                    <br/><label><h6>IDADE:</h6></label>
+                    <input type="number" name="idade" required value="<?= htmlspecialchars($editIdade)?>"><br/><br/>
+                    <br/>
+                    <button type="submit" class="btn btn-outline-success btn-lg"><?=$editando ? "Atualizar" : "Cadastrar"?></button>
+                </form>
+                <br/>
+            <table border="1" cellpadding="5" class="table table-dark table-striped">
+                <caption><h4>Listagem das pessoas</h4></caption>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>IDADE</th>
+                    <th>AÇÕES</th>
+                </tr>
+                <?php foreach($_SESSION['pessoas'] as $index => $pessoa): ?>
+                <tr>
+                    <td><?=$index ?></td>
+                    <td><?= htmlspecialchars($pessoa['nome'])?></td>
+                    <td><?= htmlspecialchars($pessoa['idade'])?></td>
+                    <td>
+                        <a href="pessoa.php?edit=<?=$index?>">Editar</a>  |
+                        <a href="pessoa.php?delete=<?=$index?>" onclick="return confirm('Deseja realmente excluir')">Excluir</a>
+
+                    </td>
+                </tr>
+                <?php endforeach ?>
+            </table>
+        </body>
+</html>
